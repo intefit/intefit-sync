@@ -1,0 +1,25 @@
+{
+  "name": "intefit-sync",
+  "version": "0.0.1",
+  "description": "Sync system",
+  "config": {
+    "reporter": "xunit"
+  },
+  "dependencies": {
+    "pure-uuid": "^1.0.3",
+    "q": "~1.0.1",
+    "request": "^2.55.0",
+    "requirejs": "~2.1.15"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "latest"
+  },
+  "scripts": {
+    "test": "mocha test/ --reporter $npm_package_config_reporter",
+    "test:dev": "npm run test --intefit-sync:reporter=spec"
+  },
+  "keywords": [],
+  "author": "Grzegorz Godlewski <gg@gitgis.com>",
+  "license": "MIT"
+}

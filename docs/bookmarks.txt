@@ -1,0 +1,13 @@
+Sites:
+
+https://tapiriik.com/
+https://github.com/cpfair/tapiriik
+
+http://randombitsbytes.com/review-fitness-syncing-sites/
+http://www.copymysports.com/
+http://www.dcrainmaker.com/2013/12/automatically-training-fitness.html
+
+Endomondo:
+https://github.com/cpfair/tapiriik/blob/master/tapiriik/services/Endomondo/endomondo.py
+https://github.com/Odyno/Endomondo-php/blob/master/src/class-endomondo-php.php
+https://github.com/isoteemu/sports-tracker-liberator/blob/master/endomondo/endomondo.py

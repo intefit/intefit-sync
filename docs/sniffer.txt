@@ -1,0 +1,65 @@
+How to run mobile device sniffer on Linux Mint
+
+1. Plug laptop to ethernet, turn off wifi.
+2. Create new Wi-Fi network.
+
+http://forum.xda-developers.com/showthread.php?t=2009381
+
+sudo apt-get install hostapd dnsmasq
+sudo service hostapd stop
+sudo service dnsmasq stop
+sudo update-rc.d hostapd disable
+sudo update-rc.d dnsmasq disable
+
+sudo gedit /etc/dnsmasq.conf
+
+bind-interfaces
+interface=wlan0
+dhcp-range=192.168.150.2,192.168.150.10
+
+sudo gedit /etc/hostapd.conf
+
+interface=wlan0
+driver=nl80211
+hw_mode=g
+channel=6
+wpa=2
+ssid=myhotspot
+wpa_passphrase=aaaa
+
+sudo gedit start_hotspot.sh
+
+#!/bin/bash
+# Start
+# Configure IP address for WLAN
+sudo ifconfig wlan0 192.168.150.1
+# Start DHCP/DNS server
+sudo service dnsmasq restart
+# Enable routing
+sudo sysctl net.ipv4.ip_forward=1
+# Enable NAT
+sudo iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+sudo iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 443 -j REDIRECT --to-port 8080
+
+# Run access point daemon
+sudo hostapd /etc/hostapd.conf
+# Stop
+# Disable NAT
+sudo iptables -D POSTROUTING -t nat -o ppp0 -j REDIRECT
+
+# Disable routing
+sudo sysctl net.ipv4.ip_forward=0
+# Disable DHCP/DNS server
+sudo service dnsmasq stop
+sudo service hostapd stop
+
+3. Run this script
+4. Turn phone to airplane mode, turn on phone WiFi
+5. Connect phone to created Wi-Fi network. This way all the traffic will go through Laptop
+6. Install and run http://mitmproxy.org/
+
+mitmproxy -T --host
+
+Press ? for keys
+
+7. Open phone browser, go to http://mitm.it install the certificate
