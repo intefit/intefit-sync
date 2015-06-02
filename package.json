@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "crc": "^3.2.1",
+    "prompt": "^0.2.14",
     "pure-uuid": "^1.0.3",
     "q": "~1.0.1",
     "request": "^2.55.0",
@@ -19,7 +20,8 @@
   },
   "scripts": {
     "test": "mocha test/ --reporter $npm_package_config_reporter",
-    "test:dev": "npm run test --intefit-sync:reporter=spec"
+    "test:dev": "npm run test --intefit-sync:reporter=spec",
+    "test:dev:strava": "mocha test/strava --reporter=spec"
   },
   "keywords": [],
   "author": "Grzegorz Godlewski <gg@gitgis.com>",

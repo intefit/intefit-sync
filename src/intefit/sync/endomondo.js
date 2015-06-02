@@ -10,7 +10,8 @@ define(['intefit/sync/base', 'intefit/workout', 'intefit/person', 'intefit/messa
 
         this.provider = 'endomondo';
         this.capabilities = [
-            'getFiends',
+            'login',
+            'getFriends',
             'getWorkouts',
             'getWorkout',
             'uploadWorkout'
